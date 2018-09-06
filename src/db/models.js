@@ -1,4 +1,3 @@
-
 /**
  * Created by dhroovgupta7 on 06/09/18
  */
@@ -12,7 +11,7 @@ const db_pass = 'foopass' //change this when deploy this in prod.
 const db_host = 'localhost' //change this when deploy this in prod.
 const db_URL = 'postgres://' + db_user + ":" + db_pass + "@" + db_host + ":5432/" + db_name
 
-const db = new Sequelize(db_URL,{
+const db = new Sequelize(db_URL, {
     dialect: 'postgres',
     pool: {
         max: 5,
@@ -28,8 +27,8 @@ const user = db.define('user', {
     name: {type: DataTypes.STRING, allowNull: false},
     email: {types: DataTypes.STRING, allowNull: false, unique: true},
     city: {type: DataTypes.STRING, allowNull: false},
-    gender: {Type: DataTypes.ENUM('MALE','FEMALE','UNDISCLOSED'),default:'UNDISCLOSED'}
-},{
+    gender: {Type: DataTypes.ENUM('MALE', 'FEMALE', 'UNDISCLOSED'), default: 'UNDISCLOSED'}
+}, {
     paranoid: true
 })
 
@@ -54,7 +53,8 @@ db.sync({
 
 module.exports = {
     models: {
-      user
+        user,
+        blog
     },
     db
 }
