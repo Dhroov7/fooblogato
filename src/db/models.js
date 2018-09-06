@@ -4,6 +4,7 @@
  */
 
 const Sequelize = require('sequelize')
+const DataTypes = Sequelize.DataTypes
 
 const db_name = 'fooblogato' //change this when deploy this in prod.
 const db_user = 'fooblogger' //change this when deploy this in prod.
@@ -21,11 +22,25 @@ const db = new Sequelize(db_URL,{
     logging: true
 })
 
+const user = db.define('user',{
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    username: {types: DataTypes.STRING, allowNull: false, unique: true},
+    name: {type: DataTypes.STRING, allowNull: false},
+    email: {types: DataTypes.STRING, allowNull: false, unique: true},
+    city: {type: DataTypes.STRING, allowNull: false},
+    gender: {Type: DataTypes.ENUM('MALE','FEMALE','UNDISCLOSED'),default:'UNDISCLOSED'}
+},{
+    paranoid: true
+})
+
 db.sync({
     force: true, //change this when deploy this in prod.
     alter: true //change this when deploy this in prod.
 })
 
 module.exports = {
+    models: {
+      user
+    },
     db
 }
