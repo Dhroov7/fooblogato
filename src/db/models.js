@@ -40,6 +40,9 @@ const blog = db.define('blog', {
     treat: {types: DataTypes.BIGINT, allowNull: false, default: 0}
 })
 
+blog.belongsTo(user)
+user.hasMany(blog, {as: 'blogs'})
+
 db.sync({
     force: true, //change this when deploy this in prod.
     alter: true //change this when deploy this in prod.
