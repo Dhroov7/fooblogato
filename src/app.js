@@ -8,4 +8,6 @@ app.set('view engine','hbs')
 app.set('view cache',true)
 app.set('views',path.join(__dirname + '../views'))
 
-module.exports = app
+app.listen(9898,() => {
+    console.log('server started at http://localhost:9898')
+})
