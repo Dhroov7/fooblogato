@@ -22,7 +22,7 @@ const db = new Sequelize(db_URL,{
     logging: true
 })
 
-const user = db.define('user',{
+const user = db.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     username: {types: DataTypes.STRING, allowNull: false, unique: true},
     name: {type: DataTypes.STRING, allowNull: false},
@@ -31,6 +31,13 @@ const user = db.define('user',{
     gender: {Type: DataTypes.ENUM('MALE','FEMALE','UNDISCLOSED'),default:'UNDISCLOSED'}
 },{
     paranoid: true
+})
+
+const blog = db.define('blog', {
+    id: {types: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    title: {types: DataTypes.STRING, allowNull: false, default: 'TITLE'},
+    description: {types: DataTypes.TEXT, allowNull: false, default: 'Some Description'},
+    treat: {types: DataTypes.BIGINT, allowNull: false, default: 0}
 })
 
 db.sync({
