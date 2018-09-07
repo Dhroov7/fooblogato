@@ -23,20 +23,19 @@ const db = new Sequelize(db_URL, {
 
 const user = db.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    username: {types: DataTypes.STRING, allowNull: false, unique: true},
+    username: {type: DataTypes.STRING, allowNull: false, unique: true},
     name: {type: DataTypes.STRING, allowNull: false},
-    email: {types: DataTypes.STRING, allowNull: false, unique: true},
-    city: {type: DataTypes.STRING, allowNull: false},
-    gender: {Type: DataTypes.ENUM('MALE', 'FEMALE', 'UNDISCLOSED'), default: 'UNDISCLOSED'}
+    email: {type: DataTypes.STRING, allowNull: false, unique: true},
+    city: {type: DataTypes.STRING, allowNull: false}
 }, {
     paranoid: true
 })
 
 const blog = db.define('blog', {
-    id: {types: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    title: {types: DataTypes.STRING, allowNull: false, default: 'TITLE'},
-    description: {types: DataTypes.TEXT, allowNull: false, default: 'Some Description'},
-    treat: {types: DataTypes.BIGINT, allowNull: false, default: 0}
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    title: {type: DataTypes.STRING, allowNull: false, default: 'TITLE'},
+    description: {type: DataTypes.TEXT, allowNull: false, default: 'Some Description'},
+    treat: {type: DataTypes.BIGINT, allowNull: false, default: 0}
 })
 
 blog.belongsTo(user)
