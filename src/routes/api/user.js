@@ -45,11 +45,7 @@ route.get('/:username/blogs', async(req, res) => {
 
     try{
 
-        const user = await models.user.find({
-            where:{
-                username: req.params.username
-            }
-        })
+        const user = await findUser(req.params.username)
 
         const blogs = await findAllBlogs(user.id)
 
