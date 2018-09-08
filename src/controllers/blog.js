@@ -20,12 +20,14 @@ function findBlog(blogId) {
     })
 }
 
-function addBlog(title, description) {
-    return models.blog.create({title: title, description: description})
+function addBlog(title, description, userId) {
+    return models.blog.create({title: title, description: description},{
+        include: userId
+    })
 }
 
-function updateBlog(title, description) {
-    return models.blog.upsert({title: title, description: description})
+function updateBlog(blogId, title, description) {
+    return models.blog.upsert({id: blogId, title: title, description: description})
 }
 
 function deleteBlog(blogId) {
