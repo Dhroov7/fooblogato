@@ -5,6 +5,7 @@
 const express = require('express')
 const route = express.Router()
 const {findUser} = require('../../controllers/user')
+const {findAllBlogs} = require('../../controllers/blog')
 
 
 route.get('/me', async (req, res) => {
@@ -40,7 +41,27 @@ route.get('/:username', async (req, res) => {
     }
 })
 
-route.get('/:username/blogs', (req, res) => {
+route.get('/:username/blogs', async(req, res) => {
+
+    try{
+
+        const user = await models.user.find({
+            where:{
+                username: req.params.username
+            }
+        })
+
+        const blogs = await findAllBlogs(user.id)
+
+        if(!blogs){
+            res.send('No blogs found!')
+        }
+
+        res.send(blogs)
+    }catch(err){
+
+        res.send('Unknown user or unauthorized request')
+    }
 
 })
 
