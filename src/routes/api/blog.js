@@ -6,8 +6,9 @@ const express = require('express')
 const route = express.Router()
 const models = require('../../db/models').models
 const {addBlog, deleteBlog, findAllBlogs, findBlog, updateBlog} = require('../../controllers/blog')
+const {reqUser} = require('../../middlewares/userReq')
 
-route.get('/my', async (req, res) => {
+route.get('/my', reqUser, async (req, res) => {
 
     try {
 
@@ -42,7 +43,7 @@ route.get('/:id', async (req, res) => {
 
 })
 
-route.post('/add', async (req, res) => {
+route.post('/add', reqUser, async (req, res) => {
 
     try {
 

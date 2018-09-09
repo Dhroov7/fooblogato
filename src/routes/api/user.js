@@ -6,9 +6,9 @@ const express = require('express')
 const route = express.Router()
 const {findUser} = require('../../controllers/user')
 const {findAllBlogs} = require('../../controllers/blog')
+const {reqUser} = require('../../middlewares/userReq')
 
-
-route.get('/me', async (req, res) => {
+route.get('/me', reqUser, async (req, res) => {
 
     try {
 
