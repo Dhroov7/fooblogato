@@ -31,7 +31,7 @@ route.get('/:id', async (req, res) => {
 
         const blog = await findBlog(req.params.id)
 
-        if (!blog.length) {
+        if (!blog) {
             res.status(404).send('No blogs found!')
         }
 
@@ -105,7 +105,7 @@ route.delete('/remove/:id', async (req, res) => {
 
         await deleteBlog(blogToBeDeletedId)
 
-        res.status(200)
+        res.status(200).send('Blog deleted!')
 
     } catch (err) {
 

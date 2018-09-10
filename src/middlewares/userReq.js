@@ -5,7 +5,7 @@
 function reqUser(req, res, next) {
     req.user = {}
     req.user.username = 'Dhroov7'
-    req.user.id = 2
+    req.user.id = 1
 
     next()
 
