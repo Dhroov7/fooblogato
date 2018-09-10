@@ -13,14 +13,14 @@ route.get('/my', reqUser, async (req, res) => {
     try {
 
         const blogs = await findAllBlogs(req.user.id)
-        if (!blogs) {
-            res.send('No blogs found!')
+        if (!blogs.length) {
+            res.status(404).send('No blogs found!')
         }
 
         res.send(blogs)
 
     } catch (err) {
-        res.send('Unknown user or unauthorized request')
+        res.status(401).send('Unknown user or unauthorized request')
     }
 
 })
@@ -31,14 +31,14 @@ route.get('/:id', async (req, res) => {
 
         const blog = await findBlog(req.params.id)
 
-        if (!blog) {
-            res.send('No blog found!')
+        if (!blog.length) {
+            res.status(404).send('No blogs found!')
         }
 
         res.send(blog)
 
     } catch (err) {
-        res.send('Unknown user or unauthorized request')
+        res.status(401).send('Unknown user or unauthorized request')
     }
 
 })
@@ -59,15 +59,14 @@ route.post('/add', reqUser, async (req, res) => {
 
         if (newBlog.title && newBlog.description) {
             await addBlog(newBlog.title, newBlog.description, req.user.id)
-
-            res.status(201)
+            res.status(201).send('New Blog created')
         }
 
-        res.send('Title or description could not empty.')
+        res.status(400).send('Title or description could not empty.')
 
     } catch (err) {
 
-        res.send('Unknown user or unauthorized request')
+        res.status(401).send('Unknown user or unauthorized request')
     }
 
 })
@@ -94,7 +93,7 @@ route.patch('/:id', async (req, res) => {
 
     } catch (err) {
 
-        res.send('Unknown user or unauthorized request')
+        res.status(401).send('Unknown user or unauthorized request')
     }
 })
 
@@ -110,7 +109,7 @@ route.delete('/remove/:id', async (req, res) => {
 
     } catch (err) {
 
-        res.send('Unknown user or unauthorized request')
+        res.status(401).send('Unknown user or unauthorized request')
     }
 
 })

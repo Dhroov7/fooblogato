@@ -33,17 +33,17 @@ const user = db.define('user', {
 
 const blog = db.define('blog', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    title: {type: DataTypes.STRING, allowNull: false, default: 'TITLE'},
-    description: {type: DataTypes.TEXT, allowNull: false, default: 'Some Description'},
-    treat: {type: DataTypes.BIGINT, allowNull: false, default: 0}
+    title: {type: DataTypes.STRING, allowNull: false},
+    description: {type: DataTypes.TEXT, allowNull: false},
+    treat: {type: DataTypes.INTEGER, allowNull: false}
 })
 
 blog.belongsTo(user)
 user.hasMany(blog, {as: 'blogs'})
 
 db.sync({
-    force: true, //change this when deploy this in prod.
-    alter: true //change this when deploy this in prod.
+    force: false, //change this when deploy this in prod.
+    alter: false //change this when deploy this in prod.
 }).then(() => {
     console.log('Database configured.')
 }).catch(err => {

@@ -21,9 +21,7 @@ function findBlog(blogId) {
 }
 
 function addBlog(title, description, userId) {
-    return models.blog.create({title: title, description: description},{
-        include: userId
-    })
+    return models.blog.create({title: title, description: description, userId: userId, treat: 0})
 }
 
 function updateBlog(blogId, title, description) {
