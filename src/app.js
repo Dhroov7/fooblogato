@@ -7,6 +7,7 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const exphbs = require('express-hbs')
 
 
 const apiRouter = require('./routes/api')
@@ -15,9 +16,18 @@ const apiRouter = require('./routes/api')
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
+
+app.engine('hbs', exphbs.express4({
+    partialsDir: path.join(__dirname, '../views/partials'),
+    layoutsDir: path.join(__dirname, '../views/layouts'),
+    defaultLayout: 'views/layouts/main.hbs',
+}))
+
+
+app.set('views',path.join(__dirname + '../views'))
 app.set('view engine','hbs')
 app.set('view cache',true)
-app.set('views',path.join(__dirname + '../views'))
+app.use('/', express.static(path.join(__dirname, '../public')))
 
 app.use('/api', apiRouter)
 // app.use('/', pageRouter)
