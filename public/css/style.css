@@ -1,7 +1,11 @@
 .teal{
-    color: #20c997
+    color: #20c997;
 }
 
 .homePara{
     line-height: 2.0;
+}
+
+.bg-teal{
+    background-color: #20c997;
 }
