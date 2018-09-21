@@ -41,6 +41,13 @@ const blog = db.define('blog', {
 blog.belongsTo(user)
 user.hasMany(blog, {as: 'blogs'})
 
+const userLocal = db.define('userLocal', {
+    password: DataTypes.STRING
+})
+
+userLocal.belongsTo(user)
+user.hasOne(userLocal)
+
 db.sync({
     force: false, //change this when deploy this in prod.
     alter: false //change this when deploy this in prod.
