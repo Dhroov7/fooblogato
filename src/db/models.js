@@ -60,7 +60,8 @@ db.sync({
 module.exports = {
     models: {
         user,
-        blog
+        blog,
+        userLocal
     },
     db
 }
