@@ -5,9 +5,9 @@
 const passport = require('passport')
 const models = require('../db/models').models
 const sequelize = require('sequelize')
-const Localstrategie = require('./strategies/user-local')
+const Localstrategy = require('./strategies/user-local')
 
-passport.use(Localstrategie)
+passport.use(Localstrategy)
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
