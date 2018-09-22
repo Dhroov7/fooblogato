@@ -8,6 +8,7 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const exphbs = require('express-hbs')
+const passport = require('passport')
 
 
 const apiRouter = require('./routes/api')
@@ -15,6 +16,11 @@ const apiRouter = require('./routes/api')
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.use(express.cookieParser());
+app.use(express.bodyParser());
+app.use(express.session({ secret: 'some secret shit' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.engine('hbs', exphbs.express4({
