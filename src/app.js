@@ -9,6 +9,7 @@ const path = require('path')
 const exphbs = require('express-hbs')
 const passport = require('passport')
 const session = require('express-session')
+const bodyParser = require('body-parser')
 
 
 const apiRouter = require('./routes/api')
@@ -16,13 +17,12 @@ const apiRouter = require('./routes/api')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-app.use(express.cookieParser());
-app.use(express.bodyParser());
+app.use(bodyParser())
 app.use(session({
     secret: 'some random secret',
     resave: false,
     saveUninitialized: true,
-    cookie:{
+    cookie: {
         secure: true
     }
 }))
