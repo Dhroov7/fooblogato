@@ -14,6 +14,8 @@ const bodyParser = require('body-parser')
 
 const apiRouter = require('./routes/api')
 const pageRouter = require('./routes/pages')
+const loginRouter = require('./routes/pages/login')
+const signupRouter = require('./routes/pages/signup')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -32,18 +34,20 @@ app.use(passport.session());
 
 app.engine('hbs', exphbs.express4({
     partialsDir: path.join(__dirname, '../views/partials'),
-    layoutsDir: path.join(__dirname, '../views/layouts'),
-    defaultLayout: 'views/layouts/main.hbs',
+    layoutsDir: path.join(__dirname, '../views/layout'),
+    defaultLayout: 'views/layout/main.hbs',
 }))
 
 
-app.set('views', path.join(__dirname + '../views'))
-app.set('view engine', 'hbs')
+app.set('views', path.join(__dirname, '../views'))
+app.set("view engine", "hbs")
 app.set('view cache', true)
 app.use('/', express.static(path.join(__dirname, '../public')))
 
 app.use('/api', apiRouter)
 app.use('/', pageRouter)
+app.use('/login', loginRouter)
+app.use('/signup', signupRouter)
 
 app.listen(9898, () => { //change this when deploy this in prod.
     console.log('server started at http://localhost:9898')
