@@ -9,6 +9,7 @@ const app = express()
 const path = require('path')
 const exphbs = require('express-hbs')
 const passport = require('passport')
+const session = require('express-session')
 
 
 const apiRouter = require('./routes/api')
@@ -18,6 +19,16 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(express.cookieParser());
 app.use(express.bodyParser());
+app.use(session({
+    secret: 'some random secret',
+    resave: true,
+    saveUninitialized: true,
+    name: 'fooblogato',
+    cookie: {
+        domain: config.COOKIE_DOMAIN,
+        maxAge: 86400000
+    }
+}))
 app.use(express.session({ secret: 'some secret shit' }));
 app.use(passport.initialize());
 app.use(passport.session());
