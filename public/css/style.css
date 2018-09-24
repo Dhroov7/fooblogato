@@ -9,3 +9,9 @@
 .bg-teal{
     background-color: #20c997;
 }
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
