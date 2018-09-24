@@ -4,7 +4,7 @@
 
 const route = require('express').Router()
 
-route.get('/signup',(req,res) => {
+route.get('/',(req,res) => {
     res.render('signup')
 })
 
