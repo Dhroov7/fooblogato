@@ -11,7 +11,7 @@ route.get('/me', (req, res) => {
     const blogs = blogController.findAllBlogs(req.user.id)
 
     if (!blogs.length) {
-        res.status(404).send('No blogs found!')
+        res.send('No blogs found!')
     }
 
     res.render('homePage', {blogs})
@@ -22,7 +22,7 @@ route.get('/:username', (req, res) => {
     const user = userController.findUser(req.params.username)
 
     if (!user) {
-        res.status(404).send('No user found!')
+        res.send('No user found!')
     }
 
     const blogs = blogController.findAllBlogs(user.id)
