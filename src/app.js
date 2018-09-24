@@ -13,7 +13,7 @@ const bodyParser = require('body-parser')
 
 
 const apiRouter = require('./routes/api')
-// const pageRouter = require('./routes/pages')
+const pageRouter = require('./routes/pages')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -43,7 +43,7 @@ app.set('view cache', true)
 app.use('/', express.static(path.join(__dirname, '../public')))
 
 app.use('/api', apiRouter)
-// app.use('/', pageRouter)
+app.use('/', pageRouter)
 
 app.listen(9898, () => { //change this when deploy this in prod.
     console.log('server started at http://localhost:9898')
