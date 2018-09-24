@@ -3,4 +3,10 @@
  */
 
 const route = require('express').Router()
+const blogRouter = require('./blog')
+const userRouter = require('./user')
 
+route.use('/blog',blogRouter)
+route.use('/user',userRouter)
+
+module.exports = route
