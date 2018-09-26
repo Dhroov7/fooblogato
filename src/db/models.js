@@ -26,7 +26,8 @@ const user = db.define('user', {
     username: {type: DataTypes.STRING, allowNull: false, unique: true},
     name: {type: DataTypes.STRING, allowNull: false},
     email: {type: DataTypes.STRING, allowNull: false, unique: true},
-    city: {type: DataTypes.STRING, allowNull: false}
+    city: {type: DataTypes.STRING, allowNull: false},
+    state: {type: DataTypes.STRING, allowNull: false}
 }, {
     paranoid: true
 })
