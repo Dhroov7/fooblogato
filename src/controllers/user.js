@@ -12,6 +12,18 @@ function findUser(userUsername) {
     })
 }
 
+function findUserByEmail(userEmail){
+    return models.user.findOne({
+        where: {
+            email: userEmail
+        }
+    })
+}
+
+function createUser(user,password){
+    return models.user.create({user: user, password: password})
+}
+
 module.exports = {
-    findUser
+    findUser, findUserByEmail, createUser
 }
