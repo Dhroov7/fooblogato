@@ -3,10 +3,12 @@
  */
 
 const bcrypt = require('bcrypt')
-const saltRounds = 10
+const saltRounds = 8
 
 const passToHash = function (pass) {
-    return bcrypt.hash(pass, saltRounds)
+    bcrypt.hash(pass, saltRounds, function (err, hash) {
+        return hash
+    })
 }
 
 const compareHash = function (pass, hash) {
