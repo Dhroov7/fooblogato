@@ -20,8 +20,8 @@ function findUserByEmail(userEmail){
     })
 }
 
-function createUser(user,password){
-    return models.user.create({user: user, password: password})
+function createUser(user,password, includes){
+    return models.userLocal.create({user: user, password: password}, {include: includes})
 }
 
 module.exports = {
