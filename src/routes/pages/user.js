@@ -13,7 +13,7 @@ route.get('/me', (req, res) => {
         res.status(404).send('No user found')
     }
 
-    res.render('profile')
+    res.render('profile', {user})
 })
 
 route.get('/:username',(req,res) => {

@@ -4,7 +4,6 @@
 
 const models = require('../../db/models').models
 const LocalStrategy = require('passport-local').Strategy
-const sequelize = require('sequelize')
 const passUtils = require('../../utils/password')
 
 module.exports = new LocalStrategy(async function (username, password, cb) {

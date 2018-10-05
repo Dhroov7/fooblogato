@@ -4,19 +4,27 @@
 
 const passport = require('passport')
 const models = require('../db/models').models
-const sequelize = require('sequelize')
-const Localstrategy = require('./strategies/user-local')
+const Localstrategy = require('./strategies/index').localStrategy
 
 passport.use(Localstrategy)
 
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
+passport.serializeUser(function (user, done) {
+    return done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
-    models.user.findById(id, function(err, user) {
-        done(err, user);
-    });
+passport.deserializeUser(async function (id, done) {
+
+    try {
+
+        const user = await models.user.findById(id)
+        console.log(user)
+        return done(null, user)
+
+    } catch (err) {
+        console.log(err)
+        return done(err)
+    }
+
 });
 
 
