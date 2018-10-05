@@ -3,9 +3,16 @@
  */
 
 const route = require('express').Router()
+const passport = require('../../passport/passportHandler')
 
 route.get('/',(req,res) => {
     res.render('login')
 })
+
+route.post('/', passport.authenticate('local', {
+    failureRedirect: '/login',
+    successReturnToOrRedirect: '/user/me',
+    failureFlash: true
+}))
 
 module.exports = route
