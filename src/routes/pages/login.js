@@ -11,7 +11,7 @@ route.get('/',(req,res) => {
 
 route.post('/', passport.authenticate('local', {
     failureRedirect: '/login',
-    successReturnToOrRedirect: '/user/me',
+    successRedirect: '/user/me',
     failureFlash: true
 }))
 
