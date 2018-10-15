@@ -4,10 +4,11 @@
 
 const route = require('express').Router()
 const userController = require('../../controllers/user')
+const cel = require('connect-ensure-login')
 
-route.get('/me', (req, res) => {
+route.get('/me', cel.ensureLoggedIn('/login'), (req, res) => {
 
-    const user = userController.findUser(req.user.username)
+    const user = userController.findUserById(req.user.id)
 
     if (!user) {
         res.status(404).send('No user found')
