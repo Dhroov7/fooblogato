@@ -18,32 +18,27 @@ const pageRouter = require('./routes/pages')
 const loginRouter = require('./routes/pages/login')
 const signupRouter = require('./routes/pages/signup')
 
+app.engine('hbs', exphbs.express4({
+    partialsDir: path.join(__dirname, '../views/partials'),
+    layoutsDir: path.join(__dirname, '../views/layout'),
+    defaultLayout: 'views/layout/main.hbs',
+}))
+app.use('/', express.static(path.join(__dirname, '../public')))
+app.set('views', path.join(__dirname, '../views'))
+app.set("view engine", "hbs")
+app.set('view cache', true)
+
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(bodyParser())
 app.use(session({
     secret: 'some random secret',
     resave: false,
-    saveUninitialized: true,
-    cookie: {
-        secure: true
-    }
+    saveUninitialized: true
 }))
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-app.engine('hbs', exphbs.express4({
-    partialsDir: path.join(__dirname, '../views/partials'),
-    layoutsDir: path.join(__dirname, '../views/layout'),
-    defaultLayout: 'views/layout/main.hbs',
-}))
-
-
-app.set('views', path.join(__dirname, '../views'))
-app.set("view engine", "hbs")
-app.set('view cache', true)
-app.use('/', express.static(path.join(__dirname, '../public')))
 app.use(flash())
 
 app.use('/api', apiRouter)
