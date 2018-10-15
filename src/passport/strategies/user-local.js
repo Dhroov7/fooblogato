@@ -18,13 +18,14 @@ module.exports = new LocalStrategy(async function (username, password, cb) {
         })
 
         if(!user){
+            // console.log('here')
             return cb(null, false, {message: 'Invalid Username or password'})
         }
 
         const match = await passUtils.compareHash(password, user.password)
 
         if(match){
-            return cb(null, userLocal.user.get())
+            return cb(null, user)
         }else{
             return cb(null, false, {message: 'Invalid Password or password'})
         }
