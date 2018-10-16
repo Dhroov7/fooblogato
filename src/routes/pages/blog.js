@@ -17,6 +17,10 @@ route.get('/me', (req, res) => {
     res.render('homePage', {blogs})
 })
 
+route.get('/new', (req,res) => {
+    res.render('blogs/add')
+})
+
 route.get('/:username', (req, res) => {
 
     const user = userController.findUser(req.params.username)
