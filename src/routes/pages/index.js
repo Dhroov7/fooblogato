@@ -9,4 +9,8 @@ const userRouter = require('./user')
 route.use('/blog',blogRouter)
 route.use('/user',userRouter)
 
+route.get('/', (req,res) => {
+    res.render('homePage')
+})
+
 module.exports = route
